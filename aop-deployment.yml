@@ -1,0 +1,24 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: aop-deployment
+  namespace: actuator-namespace
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aop-app
+  template:
+    metadata:
+      labels:
+        app: aop-app
+    spec:
+      containers:
+        - name: aop-container
+          image: anshbkeai/aop1:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SERVER_PORT
+              value: "8081"
+      

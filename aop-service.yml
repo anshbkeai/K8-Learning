@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: aop-service
+  namespace: actuator-namespace
+spec:
+  selector:
+    app: aop-app
+  ports:
+    - protocol: TCP
+      port: 81
+      targetPort: 8081
+  type: LoadBalancer

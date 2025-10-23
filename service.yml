@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: actuator-service  
+  namespace: actuator-namespace
+spec:
+  selector:
+    app: actuator-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer # you can have like ClusterIP, NodePort, LoadBalancer

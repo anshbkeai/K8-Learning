@@ -1,0 +1,24 @@
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: actuator-cronjob
+  namespace: actuator-namespace
+spec:
+  schedule: "*/1 * * * *" 
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: "actuator-job"
+          labels: 
+            app: "actuator-job"
+        spec:
+          containers:
+            - name: actuator-cronjob-container
+              image: busybox:latest
+              command: 
+                - /bin/sh
+                - -c
+                - date; echo Hello from the actuator cronjob!
+                - curl http://actuator-service.actuator-namespace.svc.cluster.local:80/actuator/txn-data 
+          restartPolicy: OnFailure

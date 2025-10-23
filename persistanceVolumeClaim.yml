@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: actuator-pvc
+  namespace: actuator-namespace
+spec:
+   accessModes:
+    - ReadWriteOnce
+   resources:
+    requests:
+      storage: 1Gi
+   storageClassName: local-storage 
+   volumeName: actuator-pv
+   
